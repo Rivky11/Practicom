@@ -1,0 +1,78 @@
+
+
+<form class="example-form" [formGroup]="personalForm" (submit)="onSubmit()">
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td><mat-form-field class="example-full-width">
+            <mat-label>שם פרטי</mat-label>
+            <input matInput formControlName="firstName">
+          </mat-form-field></td>
+
+          <td><mat-form-field class="example-full-width">
+            <mat-label>שם משפחה</mat-label>
+            <input matInput formControlName="lastName">
+          </mat-form-field></td>
+
+          <td><mat-form-field class="example-full-width">
+            <mat-label>ת.ז</mat-label>
+            <input matInput type="number" formControlName="id">
+          </mat-form-field></td>
+
+          <td><mat-form-field class="example-full-width">
+            <mat-label>תאריך לידה</mat-label>
+            <input matInput type="date" formControlName="dateBorn">
+          </mat-form-field></td>
+  
+        <td><mat-form-field class="example-full-width">
+            <mat-label>מין</mat-label>
+            <mat-select  formControlName="gender">
+              <mat-option [value]="0">זכר</mat-option>
+              <mat-option [value]="1">נקבה</mat-option>
+            </mat-select>
+          </mat-form-field></td>
+  
+          <td><mat-form-field class="example-full-width">
+            <mat-label>קופת חולים</mat-label>
+            <mat-select formControlName="HMO">
+              <mat-option [value]="'macabi'" >מכבי</mat-option>
+              <mat-option [value]="'clalit'" >כללית</mat-option>
+              <mat-option [value]="'meuchedet'" >מאוחדת</mat-option>
+
+            </mat-select>
+          </mat-form-field></td>
+  
+     
+  
+      </tr>
+    </table>
+
+    <div formArrayName="children">
+      <button mat-raised-button (click)="addChild()">הוסף ילד</button>
+      <ng-container *ngFor="let childForm of personalForm.get('children')['controls']; let i = index">
+        <div class="lesson-form-row" [formGroup]="childForm">
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>שם</mat-label>
+              <input matInput type="text" formControlName="childName">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>תאריך לידה</mat-label>
+              <input matInput type="date" formControlName="childDateBorn">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>ת.ז</mat-label>
+              <input matInput type="text" formControlName="childId">
+            </mat-form-field>
+          </td>
+        </div>
+      </ng-container>
+    </div>
+  
+  
+  
+
+  
+  
+    <button mat-raised-button type="submit">הרשמה</button>
+
+</form>
